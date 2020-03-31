@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: ReplicaSet  # ReplicaSetのマニフェスト
+metadata:         # ReplicaSetのメタデータ
+  name: alpine-debug 
+  labels:
+    app: alpine-debug 
+spec:
+  replicas: 3     # Podの複製数 
+  selector:
+    matchLabels:  # ReplicaSetが管理(検索)するPodのラベル
+      app: alpine-debug 
+  template:       # template以下はPodリソースにおけるspec定義と同じ
+    metadata:
+      labels:     # Podのlabelを定義
+        app: alpine-debug
+    spec:         #コンテナの定義(simple-pod.yamlの定義と同じ)
+      containers:
+      - name: alpine-debug 
+        image: alpine 
